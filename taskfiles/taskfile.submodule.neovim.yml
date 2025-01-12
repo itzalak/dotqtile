@@ -1,0 +1,56 @@
+version: '3'
+
+vars:
+  INIT: git submodule update --init
+  DEINIT: git submodule deinit
+  ADD: git submodule add
+  LOCAL_PATH: "neovim/.config"
+
+tasks:
+
+  default:
+    internal: true
+    desc: Default
+    cmds:
+      - |
+        echo "Working dir: {{.USER_WORKING_DIR}}"
+        echo "OS: {{OS}}"
+        task --list
+    silent: true
+
+  assert:
+    cmds:
+      - for:
+          var: REQUIRED_TOOLS
+          split: ','
+          as: TOOL
+        cmd: |
+          [ -n "$(which {{ .TOOL }})" ] || ( \
+            echo "ERROR: `{{ .TOOL }}` not found" && exit 1; \
+          )
+    silent: true
+    internal: true
+    vars:
+      REQUIRED_TOOLS: git
+
+  init_neovim:
+    desc: Initialize neovim submodule
+    cmds:
+      - "{{.INIT}} {{.LOCAL_PATH}}/nvim"
+
+  deinit_neovim:
+    deps: [assert]
+    desc: Remove neovim submodule
+    prompt: ARE YOU SURE YOU WANT TO REMOVE THE NVIM SUBMODULE
+    cmds:
+      - "{{.DEINIT}} {{.LOCAL_PATH}}/nvim"
+      - "rm -rf {{.ROOT_DIR}}/.git/modules/{{.LOCAL_PATH}}/nvim"
+      - "git rm {{.LOCAL_PATH}}/nvim"
+
+  add_neovim:
+    deps: [assert]
+    desc: Add neovim git submodule
+    prompt: ARE YOU SURE YOU WANT TO ADD THE NVIM SUBMODULE
+    cmds:
+      - "mkdir -p {{.ROOT_DIR}}/{{.LOCAL_PATH}}"
+      - "{{.ADD}} git@github.com:itzalak/nvim.git {{.LOCAL_PATH}}/nvim"

@@ -1,0 +1,105 @@
+version: '3'
+
+tasks:
+
+  default:
+    internal: true
+    desc: Default
+    cmds:
+      - |
+        echo "Working dir: {{.USER_WORKING_DIR}}"
+        echo "OS: {{OS}}"
+        task --list
+    silent: true
+
+  assert:
+    cmds:
+      - for:
+          var: REQUIRED_TOOLS
+          split: ','
+          as: TOOL
+        cmd: |
+          [ -n "$(which {{ .TOOL }})" ] || ( \
+            echo "ERROR: `{{ .TOOL }}` not found" && exit 1; \
+          )
+    silent: true
+    internal: true
+
+  minimal:
+    desc: Minimal installation
+    platforms: [linux]
+    cmds:
+      - task: assert
+        vars:
+          REQUIRED_TOOLS: pacman
+      - "{{.ROOT_DIR}}/taskfiles/scripts/00-minimal-setup.sh"
+
+  installation:
+    desc: Ordered installation
+    platforms: [linux]
+    prompt: Heavily experimental, probably will fail - revision needed!
+    cmds:
+      - task: desktop
+      - task: bluetooth
+      - task: :terminal:terminal
+      - task: :neovim:neovim
+      - task: yay
+      - task: :python:python
+      - task: :sdkman:sdkman
+
+  desktop:
+    internal: true
+    desc: Desktop installation, wireless, bluetooth, sound, etc...
+    platforms: [linux]
+    cmds:
+      - task: assert
+        vars:
+          REQUIRED_TOOLS: pacman
+      - "{{.ROOT_DIR}}/taskfiles/scripts/01-desktop.sh"
+
+  yay:
+    desc: Install yay
+    prompt: ARE YOU SURE YOU WANT TO INSTALL YAY
+    platforms: [linux]
+    cmds:
+      - task: assert
+        vars:
+          REQUIRED_TOOLS: pacman
+      - "{{.ROOT_DIR}}/taskfiles/scripts/05-yay.sh"
+
+  hardware:
+    desc: Install nvidia and amd drivers
+    platforms: [linux]
+    prompt: ARE YOU SURE YOU WANT TO INSTALL GPU DRIVERS
+    cmds:
+      - task: assert
+        vars:
+          REQUIRED_TOOLS: pacman
+      - "{{.ROOT_DIR}}/taskfiles/scripts/10-hardware.sh"
+
+  development:
+    desc: Install development packages
+    platforms: [linux]
+    cmds:
+      - task: assert
+        vars:
+          REQUIRED_TOOLS: pacman, python, java, pyenv
+      - "{{.ROOT_DIR}}/taskfiles/scripts/22-development.sh"
+
+  productivity:
+    desc: Install productivity packages
+    platforms: [linux]
+    cmds:
+      - task: assert
+        vars:
+          REQUIRED_TOOLS: pacman, java, python
+      - "{{.ROOT_DIR}}/taskfiles/scripts/25-productivity.sh"
+
+  games:
+    desc: Install games packages
+    platforms: [linux]
+    cmds:
+      - task: assert
+        vars:
+          REQUIRED_TOOLS: pacman, java
+      - "{{.ROOT_DIR}}/taskfiles/scripts/30-games.sh"

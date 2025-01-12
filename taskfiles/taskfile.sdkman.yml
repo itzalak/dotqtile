@@ -1,0 +1,87 @@
+version: '3'
+
+vars:
+  SDKMAN: "{{.HOME}}/.sdkman/bin/sdkman-init.sh"
+  SOURCE_CMD: "bash -c 'source {{.SDKMAN}}"
+
+tasks:
+
+  default:
+    internal: true
+    desc: Default
+    cmds:
+      - |
+        echo "Working dir: {{.USER_WORKING_DIR}}"
+        echo "OS: {{OS}}"
+        task --list
+    silent: true
+
+  assert:
+    cmds:
+      - for:
+          var: REQUIRED_TOOLS
+          split: ','
+          as: TOOL
+        cmd: |
+          [ -n "$(which {{ .TOOL }})" ] || ( \
+            echo "ERROR: `{{ .TOOL }}` not found" && exit 1; \
+          )
+    silent: true
+    internal: true
+
+  sdkman:
+    desc: Install SDKMAN packages
+    prompt: DO YOU WANT TO INSTALL SDKMAN AND JVM PACKAGES
+    cmds:
+      - task: installation
+      - task: install_packages
+
+  install_packages:
+    internal: true
+    desc: Install SDKMAN packages
+    prompt: DO YOU WANT TO INSTALL JVM PACKAGES
+    preconditions:
+      - sh: '[[ -d "{{.HOME}}/.sdkman" ]]'
+        msg: sdkman is not installed
+    cmds:
+      - "{{.SOURCE_CMD}} && sdk install java 21.0.5-tem'"
+      - "{{.SOURCE_CMD}} && sdk install kotlin'"
+      - "{{.SOURCE_CMD}} && sdk install groovy'"
+      - "{{.SOURCE_CMD}} && sdk install maven'"
+      - "{{.SOURCE_CMD}} && sdk install gradle'"
+    silence: true
+
+  install_sdk_extra_packages:
+    internal: true
+    desc: Install SDKMAN packages
+    prompt: DO YOU WANT TO INSTALL EXTRA JVM PACKAGES
+    preconditions:
+      - sh: '[[ -d "{{.HOME}}/.sdkman" ]]'
+        msg: sdkman is not installed
+    cmds:
+      - "{{.SOURCE_CMD}} && sdk install java 11.0.24-tem'"
+      - "{{.SOURCE_CMD}} && sdk install java 17.0.12-tem'"
+      - "{{.SOURCE_CMD}} && sdk install java 23.0.1-tem'"
+      - "{{.SOURCE_CMD}} && sdk install scala'"
+    silence: true
+
+  update_sdkman:
+    desc: Update SDKMAN
+    preconditions:
+      - sh: '[[ -d "{{.HOME}}/.sdkman" ]]'
+        msg: sdkman is not installed
+    cmds:
+      - "{{.SOURCE_CMD}} && sdk selfupdate force'"
+
+  installation:
+    internal: true
+    desc: Install SDKMAN if not already installed
+    prompt: DO YOU WANT TO INSTALL SDKMAN
+    cmds:
+      - task: assert
+        vars:
+          REQUIRED_TOOLS: curl
+      - curl -Ss "https://get.sdkman.io" | bash
+      - echo "Cleaning automatically created ~/.zshrc"
+      - rm -rf "{{.HOME}}/.zshrc"
+    silence: true
