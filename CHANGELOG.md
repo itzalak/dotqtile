@@ -1,3 +1,9 @@
+## v0.2.4 (2025-01-12)
+
+### Changed
+
+- taskfile update for thunar
+
 ## v0.2.3 (2025-01-12)
 
 ### Changed
