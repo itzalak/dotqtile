@@ -30,7 +30,7 @@ git clone git@github.com:itzalak/dotqtile.git {{destination/directory}}
 Run minimal setup script to install required tools
 
 ```shell
-curl -fsSL https://raw.githubusercontent.com/itzalak/dotqtile/refs/heads/main/taskfiles/scripts/00-minimal-setup.sh | bash
+curl -fsSL https://raw.githubusercontent.com/itzalak/dotqtile/refs/heads/main/taskfiles/scripts/00-pacman-minimal.sh | bash
 ```
 
 ## Requirements

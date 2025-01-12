@@ -1,0 +1,43 @@
+[project]
+name = "dotqtile"
+version = "0.0.0"
+description = "Personal laboratory for experimental archlinux dotfiles"
+authors = [
+    {name = "Itzalak",email = "itzalak@tuta.io"}
+]
+readme = "README.md"
+keywords = ["dotfiles", "archlinux"]
+requires-python = ">=3.12"
+dependencies = [
+    "pytest >= 8.3.3",
+    "python-dotenv >= 1.0.1",
+    "toml >= 0.10.2"
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pyright]
+include=["dotqtile"]
+venvPath = "."
+venv = ".venv"
+
+
+[tool.commitizen]
+name = "cz_customize"
+tag_format = "v$major.$minor.$patch"
+version_scheme = "semver"
+version = "0.1.35"
+update_changelog_on_bump = true
+version_files = ["pyproject.toml"]
+
+[tool.commitizen.customize]
+schema = "<type>: <body>"
+schema_pattern = "(bump|break|feat|chore|tools|docs|fix):(\\s.*)"
+bump_pattern = "^(bump|break|feat|tools|fix|chore)"
+bump_map = { "break" = "MAJOR", "feat" = "MINOR", "fix" = "PATCH", "tools" = "PATCH", "chore" = "PATCH", "docs" = "PATCH" }
+change_type_order = ["break", "feat", "fix", "tools", "chore", "docs"]
+commit_parser = "^(?P<change_type>break|feat|chore|tools|docs|fix):\\s(?P<message>.*)?"
+changelog_pattern = "^(break|feat|chore|tools|docs|fix)?(!)?"
+change_type_map = { "break" = "Breaking Change", "feat" = "Changed", "fix" = "Fixed", "tools" = "Tools", "chore" = "Changed", "docs" = "Notes" }

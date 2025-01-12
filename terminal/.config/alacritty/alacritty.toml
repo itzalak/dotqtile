@@ -1,0 +1,36 @@
+[env]
+TERM = "xterm-256color"
+
+[window]
+opacity = 0.80 # value between 0 and 1
+
+[window.padding]
+x = 24
+y = 24
+
+[selection]
+# When set to `true`, selected text will be copied to the primary clipboard.
+save_to_clipboard = true
+
+[font]
+size = 14.0
+
+[font.bold]
+family = "Iosevka Nerd Font"
+style = "Bold Oblique"
+
+[font.bold_italic]
+family = "Iosevka Nerd Font"
+style = "Bold Italic"
+
+[font.italic]
+family = "Iosevka Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "Iosevka Nerd Font"
+style = "Bold"
+
+[general]
+live_config_reload = true
+import = ["~/.config/tint16/palettes/alacritty.toml"]

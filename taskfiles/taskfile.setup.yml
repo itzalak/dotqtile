@@ -32,7 +32,7 @@ tasks:
       - task: assert
         vars:
           REQUIRED_TOOLS: pacman
-      - "{{.ROOT_DIR}}/taskfiles/scripts/00-minimal-setup.sh"
+      - "{{.ROOT_DIR}}/taskfiles/scripts/00-pacman-minimal.sh"
 
   installation:
     desc: Ordered installation
@@ -55,7 +55,7 @@ tasks:
       - task: assert
         vars:
           REQUIRED_TOOLS: pacman
-      - "{{.ROOT_DIR}}/taskfiles/scripts/01-desktop.sh"
+      - "{{.ROOT_DIR}}/taskfiles/scripts/01-pacman-desktop.sh"
 
   yay:
     desc: Install yay
@@ -65,7 +65,7 @@ tasks:
       - task: assert
         vars:
           REQUIRED_TOOLS: pacman
-      - "{{.ROOT_DIR}}/taskfiles/scripts/05-yay.sh"
+      - "{{.ROOT_DIR}}/taskfiles/scripts/04-archlinux-yay.sh"
 
   hardware:
     desc: Install nvidia and amd drivers

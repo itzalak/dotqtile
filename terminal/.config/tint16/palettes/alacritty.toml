@@ -1,0 +1,30 @@
+# Tint16 generated palette
+# Theme: "basoa-summer"
+# Author: "Itzalak"
+
+[colors.primary]
+# Default colors
+background = "#092a13"
+foreground = "#e2f6a6"
+
+# Normal colors
+[colors.normal]
+black = "#353f0e"
+red = "#e14433"
+green = "#5cb200"
+yellow = "#ebbe2f"
+blue = "#56b8f7"
+magenta = "#bd97fc"
+cyan = "#27c3d9"
+white = "#b9d64a"
+
+# Bright colors
+[colors.bright]
+black = "#637321"
+red = "#f36552"
+green = "#6aca00"
+yellow = "#fbd66e"
+blue = "#89cdfc"
+magenta = "#ceb5fd"
+cyan = "#42daf1"
+white = "#f3fbdf"

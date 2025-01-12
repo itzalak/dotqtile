@@ -1,0 +1,25 @@
+# Tint16 generated palette
+# Theme: "basoa-summer"
+# Author: "Itzalak"
+
+palette = 0=#353f0e
+palette = 1=#e14433
+palette = 2=#5cb200
+palette = 3=#ebbe2f
+palette = 4=#56b8f7
+palette = 5=#bd97fc
+palette = 6=#27c3d9
+palette = 7=#b9d64a
+palette = 8=#637321
+palette = 9=#f36552
+palette = 10=#6aca00
+palette = 11=#fbd66e
+palette = 12=#89cdfc
+palette = 13=#ceb5fd
+palette = 14=#42daf1
+palette = 15=#f3fbdf
+background = #092a13
+foreground = #e2f6a6
+cursor-color = #637321
+selection-background = #637321
+selection-foreground = #e2f6a6

@@ -6,6 +6,7 @@ includes:
   neovim: ./taskfiles/taskfile.neovim.yml
   python: ./taskfiles/taskfile.python.yml
   sdkman: ./taskfiles/taskfile.sdkman.yml
+  thunar: ./taskfiles/taskfile.thunar.yml
 
 tasks:
 
