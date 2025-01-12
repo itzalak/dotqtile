@@ -1,6 +1,6 @@
 [project]
 name = "dotqtile"
-version = "0.2.1"
+version = "0.2.2"
 description = "Personal laboratory for experimental archlinux dotfiles"
 authors = [
     {name = "Itzalak",email = "itzalak@tuta.io"}
@@ -28,7 +28,7 @@ venv = ".venv"
 name = "cz_customize"
 tag_format = "v$major.$minor.$patch"
 version_scheme = "semver"
-version = "0.2.1"
+version = "0.2.2"
 update_changelog_on_bump = true
 version_files = ["pyproject.toml"]
 
