@@ -40,12 +40,15 @@ tasks:
     prompt: Heavily experimental, probably will fail - revision needed!
     cmds:
       - task: desktop
-      - task: bluetooth
       - task: :terminal:terminal
       - task: :neovim:neovim
       - task: yay
-      - task: :python:python
-      - task: :sdkman:sdkman
+      # User related installations, required to all users
+      # - task: :python:python
+      # - task: :sdkman:sdkman
+      # Requires restart of the terminal
+      # - task: development
+      # - task: productivity
 
   desktop:
     internal: true

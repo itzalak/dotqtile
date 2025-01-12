@@ -4,6 +4,7 @@ set -uo pipefail
 
 PKGS=(
   xfce4
+  lxappearance
 )
 
 echo "Installing packages"

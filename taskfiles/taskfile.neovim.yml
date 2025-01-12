@@ -37,7 +37,7 @@ tasks:
   neovim:
     desc: Install and setup neovim
     cmds:
-      - task: :submodule_neovim:init_submodule
+      - task: init_submodule
       - task: installation_linux
       - task: installation_macos
       - task: stow
