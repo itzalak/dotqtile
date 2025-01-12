@@ -34,7 +34,14 @@ tasks:
     desc: Setup thunar
     cmds:
       - task: cleanup
+      - task: directories
       - task: stow
+
+  directories:
+    internal: true
+    desc: Create required directories
+    cmds:
+      - mkdir -p {{.HOME}}/.local/share/applications
 
   cleanup:
     internal: true
