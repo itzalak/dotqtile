@@ -3,7 +3,6 @@ version: '3'
 includes:
   setup: ./taskfiles/taskfile.setup.yml
   terminal: ./taskfiles/taskfile.terminal.yml
-  submodule_neovim: ./taskfiles/taskfile.submodule.neovim.yml
   neovim: ./taskfiles/taskfile.neovim.yml
   python: ./taskfiles/taskfile.python.yml
   sdkman: ./taskfiles/taskfile.sdkman.yml
