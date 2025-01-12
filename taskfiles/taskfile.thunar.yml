@@ -30,7 +30,6 @@ tasks:
       REQUIRED_TOOLS: stow, pacman
 
   thunar:
-    internal: true
     deps: [assert]
     desc: Setup thunar
     cmds:
@@ -42,6 +41,7 @@ tasks:
     desc: Delete existent configuration
     cmds:
       - rm -rf {{.HOME}}/.config/Thunar
+      - rm -rf {{.HOME}}/.config/thunar
 
   stow:
     deps: [assert]

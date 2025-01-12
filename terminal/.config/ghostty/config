@@ -1,5 +1,3 @@
-command = fish
-
  # Font
 font-family = "Iosevka Nerd Font"
 font-size = 16
@@ -8,7 +6,6 @@ font-style = Medium
 # Appearance
 window-padding-x = 10
 window-padding-y = 10
-window-decoration = false
 background-opacity = 0.90
 unfocused-split-opacity = 0.6
 unfocused-split-fill = #000000
@@ -44,3 +41,4 @@ quick-terminal-animation-duration = 0.2
 
 # Config files
 config-file = ?../tint16/palettes/ghostty
+config-file = ?linux.conf
